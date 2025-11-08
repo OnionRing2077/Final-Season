@@ -2,35 +2,33 @@ using UnityEngine;
 
 public class PlayerMovement3D : MonoBehaviour
 {
-    public float moveSpeed = 10f;
+    public float moveSpeed = 5f;
     public Rigidbody rb;
-    public Transform cameraTransform; // ใส่ Main Camera เข้ามา
+    public Transform cameraTransform;
+    public Animator animator;
 
     Vector3 movement;
 
     void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal"); // A,D
-        float moveZ = Input.GetAxisRaw("Vertical");   // W,S
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
+        Vector3 inputDirection = new Vector3(moveX, 0f, moveZ).normalized;
 
-        // แกนของกล้อง
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
-
-        // ตัดค่า Y ออก (ไม่ให้เดินขึ้นฟ้า/ลงดิน)
-        forward.y = 0f;
-        right.y = 0f;
-        forward.Normalize();
-        right.Normalize();
-
-        // คำนวณทิศการเดินตามมุมกล้อง
-        movement = (forward * moveZ + right * moveX).normalized;
-
-        // ถ้ามีการเคลื่อนที่ → หันตามทิศที่เดิน
-        if (movement != Vector3.zero)
+        if (inputDirection.magnitude >= 0.1f)
         {
-            transform.forward = movement;
+            float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            //transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            movement = moveDir.normalized;
         }
+        else
+        {
+            movement = Vector3.zero;
+        }
+
+        // อัปเดต Animator
+        animator.SetFloat("Speed", movement.magnitude * moveSpeed);
     }
 
     void FixedUpdate()

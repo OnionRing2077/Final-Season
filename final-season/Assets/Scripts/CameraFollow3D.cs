@@ -1,23 +1,30 @@
 using UnityEngine;
 
-public class CameraFollow3D : MonoBehaviour
+public class CameraFixedFollow : MonoBehaviour
 {
-    public Transform target;       // ตัวละครที่จะติดตาม
-    public float smoothSpeed = 0.125f;
-    public Vector3 offset;         // ระยะห่างจากตัวละคร (เช่น (0, 10, -10))
+    public Transform target;      // ตัวละครที่จะติดตาม
+    public Vector3 offset = new Vector3(0, 5, -10); // ระยะห่างคงที่
+    public float smoothSpeed = 0.1f;  // ความนุ่มนวลของกล้อง
+
+    private Vector3 fixedPosition; // เก็บตำแหน่งกล้องเป้าหมาย
+
+    void Start()
+    {
+        // ตั้งตำแหน่งกล้องเริ่มต้นจาก offset
+        if (target != null)
+        {
+            transform.position = target.position + offset;
+        }
+    }
 
     void LateUpdate()
     {
-        if (target != null)
-        {
-            // คำนวณตำแหน่งใหม่ของกล้อง
-            Vector3 desiredPosition = target.position + offset;
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        if (target == null) return;
 
-            transform.position = smoothedPosition;
+        // คำนวณตำแหน่งที่ต้องการให้กล้องอยู่ (คงที่)
+        fixedPosition = target.position + offset;
 
-            // ให้กล้องหันมองตัวละครเสมอ
-            transform.LookAt(target);
-        }
+        // เคลื่อนกล้องแบบนุ่มนวลโดยไม่เปลี่ยน offset
+        transform.position = Vector3.Lerp(transform.position, fixedPosition, smoothSpeed);
     }
 }
