@@ -9,6 +9,7 @@ public class LobbyManagerNew : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AutomaticallySyncScene = true;
 
         if (!PhotonNetwork.IsConnected)
@@ -48,7 +49,8 @@ public class LobbyManagerNew : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom()
-    {
-        PhotonNetwork.LoadLevel("GameScene");
-    }
+{
+    Debug.Log("Joined Room: " + PhotonNetwork.CurrentRoom.Name);
+    PhotonNetwork.LoadLevel("GameScene"); // ต้องมีชื่อ Scene ตรงนี้
+}
 }
