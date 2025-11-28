@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Photon Web Multiplayer</title>
+  <!-- โหลด SDK จาก Photon -->
+  <script src="https://download.photonengine.com/web-sdk/realtime/4.2.0/photon-realtime.min.js"></script>
+</head>
+<body>
+  <h1>Photon Lobby Example</h1>
+  <input id="playerName" placeholder="Enter your name">
+  <button onclick="connect()">Connect</button>
+  
+  <h3 id="status">Not connected</h3>
+  <div id="roomList"></div>
+
+  <script>
+    let client;
+
+    function connect() {
+      let name = document.getElementById("playerName").value || "Player" + Math.floor(Math.random() * 1000);
+
+      client = new Photon.Realtime.LoadBalancingClient(PHOTON.LoadBalancing.Constants.RegionCodes.asia);
+      client.appId = "YOUR_APP_ID"; // 👈 ใส่ App ID ของคุณจาก Photon Dashboard
+      client.appVersion = "1.0";
+      client.myUserId = name;
+
+      client.onStateChange = state => {
+        document.getElementById("status").innerText = "State: " + state;
+      };
+
+      client.onJoinLobby = () => {
+        document.getElementById("status").innerText = "✅ Joined Lobby!";
+        client.opCreateRoom({ roomName: "Room_" + Math.floor(Math.random() * 1000) });
+      };
+
+      client.onJoinRoom = () => {
+        document.getElementById("status").innerText = "🎮 Joined Room: " + client.myRoom().name;
+      };
+
+      client.connectToRegionMaster("asia");
+    }
+
+    // Update client state ทุก 50ms
+    setInterval(() => {
+      if (client) client.service();
+    }, 50);
+  </script>
+</body>
+</html>
