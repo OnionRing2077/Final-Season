@@ -97,3 +97,10 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Ignore big texture folder
+Assets/4K PBR Realistic Ground Textures/
+Assets/BK_AlchemistHouse/
+Assets/WoodsLifestyle/
+Assets/Easy3D/Stylized Farm Asset Pack - Small/
+Assets/NaturePack/
