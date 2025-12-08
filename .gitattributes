@@ -1,244 +1,108 @@
-# Macro for Unity YAML-based asset files.
+###############################################################################
+# 🟩 UNITY PROJECT GIT ATTRIBUTES + LFS OPTIMIZED
+# Prevent merge conflicts, optimize line endings, and LFS usage for Unity
+###############################################################################
 
-[attr]unityyaml -text merge=unityyamlmerge diff
-
-
-# Macro for all binary files that should use Git LFS.
-
-[attr]lfs -text filter=lfs diff=lfs merge=lfs
-
-
-# Default to auto-normalized line endings.
-
+# 🔧 Default to normalized text
 * text=auto
 
-
-# Code
-
-*.cs text diff=csharp
-
-
-# Unity Text Assets
-
-*.meta unityyaml
-
-*.unity unityyaml
-
-*.asset unityyaml
-
-*.prefab unityyaml
-
-*.mat unityyaml
-
-*.anim unityyaml
-
-*.controller unityyaml
-
-*.overrideController unityyaml
-
-*.physicMaterial unityyaml
-
-*.physicsMaterial2D unityyaml
-
-*.playable unityyaml
-
-*.mask unityyaml
-
-*.brush unityyaml
-
-*.flare unityyaml
-
-*.fontsettings unityyaml
-
-*.guiskin unityyaml
-
-*.giparams unityyaml
-
-*.renderTexture unityyaml
-
-*.spriteatlas unityyaml
-
-*.terrainlayer unityyaml
-
-*.mixer unityyaml
-
-*.shadervariants unityyaml
-
-*.preset unityyaml
-
-*.asmdef -text diff
-
-
-# Unity Binary Assets
-
-*.cubemap lfs
-
-*.unitypackage lfs
-
-# Note: Unity terrain assets must have "-Terrain" suffix.
-
-*-[Tt]errain.asset -unityyaml lfs
-
-# Note: Unity navmesh assets must have "-NavMesh" suffix.
-
-*-[Nn]av[Mm]esh.asset -unityyaml lfs
-
-
-# Image
-
-*.jpg lfs
-
-*.jpeg lfs
-
-*.png lfs
-
-*.apng lfs
-
-*.atsc lfs
-
-*.gif lfs
-
-*.bmp lfs
-
-*.exr lfs
-
-*.tga lfs
-
-*.tiff lfs
-
-*.tif lfs
-
-*.iff lfs
-
-*.pict lfs
-
-*.dds lfs
-
-*.xcf lfs
-
-*.leo lfs
-
-*.kra lfs
-
-*.kpp lfs
-
-*.clip lfs
-
-*.webm lfs
-
-*.webp lfs
-
-*.svg lfs
-
-*.svgz lfs
-
-*.psd lfs
-
-*.afphoto lfs
-
-*.afdesign lfs
-
-
-# Audio
-
-*.mp3 lfs
-
-*.ogg lfs
-
-*.wav lfs
-
-*.aiff lfs
-
-*.aif lfs
-
-*.mod lfs
-
-*.it lfs
-
-*.s3m lfs
-
-*.xm lfs
-
-
-# Video
-
-*.mov lfs
-
-*.avi lfs
-
-*.asf lfs
-
-*.mpg lfs
-
-*.mpeg lfs
-
-*.mp4 lfs
-
-*.flv lfs
-
-*.ogv lfs
-
-*.wmv lfs
-
-
-# 3D
-
-*.fbx lfs
-
-*.obj lfs
-
-*.max lfs
-
-*.blend lfs
-
-*.blender lfs
-
-*.dae lfs
-
-*.mb lfs
-
-*.ma lfs
-
-*.3ds lfs
-
-*.dfx lfs
-
-*.c4d lfs
-
-*.lwo lfs
-
-*.lwo2 lfs
-
-*.abc lfs
-
-*.3dm lfs
-
-*.bin lfs
-
-*.glb lfs
-
-
-# Executables
-
-*.exe lfs
-
-*.dll lfs
-
-*.so lfs
-
-*.pdb lfs
-
-*.mdb lfs
-
-
-# Packaging
-
-*.zip lfs
-
-*.7z lfs
-
-*.gz lfs
-
-*.rar lfs
-
-*.tar lfs
+# 🔧 Code and text files (force LF to avoid cross-platform issues)
+*.cs text eol=lf
+*.shader text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.yaml text eol=lf
+*.cginc text eol=lf
+*.asmdef text eol=lf
+*.rsp text eol=lf
+
+###############################################################################
+# 🧠 Smart Merge (Unity YAML)
+# Prevents conflict crashes on scenes, prefabs, materials, controllers, etc.
+###############################################################################
+*.unity merge=unityyamlmerge eol=lf
+*.prefab merge=unityyamlmerge eol=lf
+*.mat merge=unityyamlmerge eol=lf
+*.anim merge=unityyamlmerge eol=lf
+*.controller merge=unityyamlmerge eol=lf
+*.overrideController merge=unityyamlmerge eol=lf
+*.physicMaterial merge=unityyamlmerge eol=lf
+*.physicsMaterial2D merge=unityyamlmerge eol=lf
+*.playable merge=unityyamlmerge eol=lf
+*.brush merge=unityyamlmerge eol=lf
+*.fontsettings merge=unityyamlmerge eol=lf
+*.guiskin merge=unityyamlmerge eol=lf
+*.spriteatlas merge=unityyamlmerge eol=lf
+*.terrainlayer merge=unityyamlmerge eol=lf
+*.mixer merge=unityyamlmerge eol=lf
+*.shadervariants merge=unityyamlmerge eol=lf
+*.preset merge=unityyamlmerge eol=lf
+*.giparams merge=unityyamlmerge eol=lf
+*.renderTexture merge=unityyamlmerge eol=lf
+*.mask merge=unityyamlmerge eol=lf
+*.flare merge=unityyamlmerge eol=lf
+
+# Meta files must use Smart Merge (prevent corruption)
+*.meta merge=unityyamlmerge eol=lf
+
+###############################################################################
+# 📦 BINARY FILES (use LFS)
+###############################################################################
+
+# 🎮 3D Models
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.c4d filter=lfs diff=lfs merge=lfs -text
+*.dae filter=lfs diff=lfs merge=lfs -text
+*.3ds filter=lfs diff=lfs merge=lfs -text
+*.glb filter=lfs diff=lfs merge=lfs -text
+*.abc filter=lfs diff=lfs merge=lfs -text
+
+# 🎨 Textures / Images
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.svg filter=lfs diff=lfs merge=lfs -text
+*.bmp filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
+
+# 🔊 Audio
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.aiff filter=lfs diff=lfs merge=lfs -text
+
+# 🎥 Video
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.avi filter=lfs diff=lfs merge=lfs -text
+*.wmv filter=lfs diff=lfs merge=lfs -text
+
+# 📚 Fonts
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text
+
+# 📦 Packages / Archives
+*.unitypackage filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.rar filter=lfs diff=lfs merge=lfs -text
+*.7z filter=lfs diff=lfs merge=lfs -text
+
+###############################################################################
+# 🚫 DO NOT TRACK (Auto generated Unity folders)
+###############################################################################
+[Ll]ibrary/** -filter -merge -diff
+[Tt]emp/** -filter -merge -diff
+[Oo]bj/** -filter -merge -diff
+[Bb]uild/** -filter -merge -diff
+[Bb]uilds/** -filter -merge -diff
+[Ll]ogs/** -filter -merge -diff
+[Mm]emoryCaptures/** -filter -merge -diff
