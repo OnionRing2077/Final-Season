@@ -96,6 +96,7 @@ InitTestScene*.unity*
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
 
 # Auto-generated scenes by play mode tests
+<<<<<<< HEAD
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 # Ignore big texture folder
@@ -104,3 +105,6 @@ Assets/BK_AlchemistHouse/
 Assets/WoodsLifestyle/
 Assets/Easy3D/Stylized Farm Asset Pack - Small/
 Assets/NaturePack/
+=======
+/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+>>>>>>> 258bfd7c313c6a51a4fcdbcdbd47c0ff4a0cf42f
