@@ -1,0 +1,19 @@
+# Normalize line endings
+* text=auto
+
+# Unity YAML assets (text mergeable)
+*.meta text merge=unityyamlmerge
+*.unity text merge=unityyamlmerge
+*.prefab text merge=unityyamlmerge
+*.mat text merge=unityyamlmerge
+*.asset text merge=unityyamlmerge
+*.anim text merge=unityyamlmerge
+*.controller text merge=unityyamlmerge
+# … (เพิ่มไฟล์ YAML ที่จำเป็นอื่น ๆ)
+
+# Text / code
+*.cs text
+*.shader text
+*.json text
+*.xml text
+*.yaml text
